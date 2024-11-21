@@ -1,4 +1,4 @@
-﻿using KeyGen_sh.Client.Models;
+﻿using KeyGenClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

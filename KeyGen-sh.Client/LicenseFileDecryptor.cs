@@ -1,4 +1,4 @@
-﻿using KeyGen_sh.Client.Models;
+﻿using KeyGenClient.Models;
 using NSec.Cryptography;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;

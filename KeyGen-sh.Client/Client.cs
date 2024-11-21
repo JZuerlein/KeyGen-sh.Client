@@ -1,5 +1,5 @@
 ﻿using DeviceId;
-using KeyGen_sh.Client.Models;
+using KeyGenClient.Models;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -106,24 +106,24 @@ namespace KeyGenClient
                                      .ToString();
         }
 
-        public async Task<KeyGen_sh.Client.Models.Machine> ActivateMachine(ActivateMachineRequest request, string licenseKey)
+        public async Task<KeyGenClient.Models.Machine> ActivateMachine(ActivateMachineRequest request, string licenseKey)
         {
             return await Post<ActivateMachineRequest, Machine>(ActivateMachineUrl(), licenseKey, request);
         }
 
-        public async Task<KeyGen_sh.Client.Models.License> ValidateLicense(ValidateLicenseByKeyRequest request)
+        public async Task<KeyGenClient.Models.License> ValidateLicense(ValidateLicenseByKeyRequest request)
         {
-            return await Post<ValidateLicenseByKeyRequest, KeyGen_sh.Client.Models.License>(ValidateLicenseKeyUrl(), request);
+            return await Post<ValidateLicenseByKeyRequest, KeyGenClient.Models.License>(ValidateLicenseKeyUrl(), request);
         }
 
-        public async Task<KeyGen_sh.Client.Models.LicenseFileResponse> CheckOutLicense(string licenseKey)
+        public async Task<KeyGenClient.Models.LicenseFileResponse> CheckOutLicense(string licenseKey)
         {
             return await Post<LicenseFileResponse>(CheckOutLicenseUrl(licenseKey, true, true), licenseKey);
         }
 
-        public async Task<KeyGen_sh.Client.Models.License> CheckInLicense(string licenseKey)
+        public async Task<KeyGenClient.Models.License> CheckInLicense(string licenseKey)
         {
-            return await Post<KeyGen_sh.Client.Models.License>(CheckInLicenseUrl(licenseKey), licenseKey);
+            return await Post<KeyGenClient.Models.License>(CheckInLicenseUrl(licenseKey), licenseKey);
         }
 
     }

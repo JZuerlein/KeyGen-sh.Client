@@ -23,11 +23,11 @@ namespace KeyGenClient.UnitTest
             Assert.NotNull(license);
             Assert.Equal("6b845231-0ec4-4128-aec9-12f103c7cfd4", license.data.id);
 
-            var actualProduct = (KeyGen_sh.Client.Models.Product)license.included.First(_ => _.GetType() == typeof(KeyGen_sh.Client.Models.Product));
+            var actualProduct = (KeyGenClient.Models.Product)license.included.First(_ => _.GetType() == typeof(KeyGenClient.Models.Product));
             Assert.Equal("C# Example", actualProduct.attributes.name);
             Assert.Equal("LICENSED", actualProduct.attributes.distributionStrategy);
 
-            var actualEntitlement = (KeyGen_sh.Client.Models.Entitlement)license.included.First(_ => _.GetType() == typeof(KeyGen_sh.Client.Models.Entitlement));
+            var actualEntitlement = (KeyGenClient.Models.Entitlement)license.included.First(_ => _.GetType() == typeof(KeyGenClient.Models.Entitlement));
             Assert.Equal("Demo Entitlement", actualEntitlement.attributes.name);
             Assert.Equal("DEMO_ENTITLEMENT", actualEntitlement.attributes.code);
 
