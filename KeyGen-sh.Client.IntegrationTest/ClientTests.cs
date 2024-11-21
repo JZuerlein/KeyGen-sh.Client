@@ -1,8 +1,8 @@
 ﻿using AutoFixture;
 using System.Text.Json;
-using KeyGen_sh.Client.Models;
+using KeyGenClient.Models;
 
-namespace KeyGen_sh.Client.IntegrationTest
+namespace KeyGenClient.IntegrationTest
 {
     public class KeyGenClientTests
     {

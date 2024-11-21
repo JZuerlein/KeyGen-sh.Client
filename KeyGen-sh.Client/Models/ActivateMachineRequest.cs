@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KeyGen_sh.Client.Models
+namespace KeyGenClient.Models
 {
     public class ActivateMachineRequest
     {

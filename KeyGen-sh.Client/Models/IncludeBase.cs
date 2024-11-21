@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace KeyGen_sh.Client.Models
+namespace KeyGenClient.Models
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
     [JsonDerivedType(typeof(Product), "products")]

@@ -1,8 +1,8 @@
 ﻿
 using System.Text.Json;
-using KeyGen_sh.Client.Models;
+using KeyGenClient.Models;
 
-namespace KeyGen_sh.Client.UnitTest
+namespace KeyGenClient.UnitTest
 {
     public class LicenseFileDecryptorTest
     {

@@ -1,8 +1,8 @@
 ﻿using AutoFixture;
-using KeyGen_sh.Client.Models;
+using KeyGenClient.Models;
 using System.Text.Json;
 
-namespace KeyGen_sh.Client.UnitTest
+namespace KeyGenClient.UnitTest
 {
     public class ValidateLicenseKeyRequestTest
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace KeyGen_sh.Client.Models
+namespace KeyGenClient.Models
 {
     public class ErrorMessage
     {

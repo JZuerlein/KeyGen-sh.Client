@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace KeyGen_sh.Client
+namespace KeyGenClient
 {
     public class LicenseFileIncludeBaseConverter : JsonConverter<List<IncludeBase>>
     {

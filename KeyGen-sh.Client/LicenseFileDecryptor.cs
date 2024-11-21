@@ -11,7 +11,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace KeyGen_sh.Client
+namespace KeyGenClient
 {
     public class LicenseFileDecryptor
     {
