@@ -3,16 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyGen-sh.Client", "KeyGen-sh.Client\KeyGen-sh.Client.csproj", "{1FAC94D9-EF1A-4D7B-AE97-491BFAC39E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyGen-sh.Client", "KeyGen-sh.Client\KeyGen-sh.Client.csproj", "{1FAC94D9-EF1A-4D7B-AE97-491BFAC39E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyGen-sh.Client.UnitTest", "KeyGen-sh.Client.UnitTest\KeyGen-sh.Client.UnitTest.csproj", "{C571DF33-7B02-4F67-9447-D18F18725DDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyGen-sh.Client.UnitTest", "KeyGen-sh.Client.UnitTest\KeyGen-sh.Client.UnitTest.csproj", "{C571DF33-7B02-4F67-9447-D18F18725DDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyGen-sh.Client.IntegrationTest", "KeyGen-sh.Client.IntegrationTest\KeyGen-sh.Client.IntegrationTest.csproj", "{DD0D6181-9324-419A-9DE9-70F7A315ECCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyGen-sh.Client.IntegrationTest", "KeyGen-sh.Client.IntegrationTest\KeyGen-sh.Client.IntegrationTest.csproj", "{DD0D6181-9324-419A-9DE9-70F7A315ECCE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E9F0DD5-3B58-450E-BAEA-2A1A8A6816FB}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D173F1EB-6A42-4BFC-ABE0-871B9B7F837C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{EC3BAD82-5486-4523-9633-604C6204881E}"
+	ProjectSection(SolutionItems) = preProject
+		ci.yml = ci.yml
 	EndProjectSection
 EndProject
 Global
@@ -36,6 +43,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC3BAD82-5486-4523-9633-604C6204881E} = {D173F1EB-6A42-4BFC-ABE0-871B9B7F837C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {642640B9-BB54-4D63-AA2E-47A6AB0A18A0}
