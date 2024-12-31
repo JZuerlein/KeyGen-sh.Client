@@ -28,23 +28,8 @@ jobs:
     - name: Run Tests
       run: dotnet test ./KeyGen-sh.Client.UnitTest/KeyGen-sh.Client.UnitTest.csproj
 
-    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
-
-    - name: Create Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: nuget
-        if-no-files-found: error
-        retention-days: 7
-        path: ${{ env.NuGetDirectory }}/*.nupkg
-
-    - uses: actions/download-artifact@v3
-      with:
-        name: nuget
-        path: ${{ env.NuGetDirectory }}
-
-    - name: Publish NuGet package
+    - name: Publish to NuGet
       run: |
-          foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
-              dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
-          }
+        rm -rf nuget/
+        dotnet pack --no-build KeyGen-sh.Client/KeyGen-sh.client.csproj --configuration Release --output nuget
+        dotnet nuget push nuget/*.nupkg -k '${{ secrets.NUGET_API_KEY }}' --skip-duplicate -s https://api.nuget.org/v3/index.json
