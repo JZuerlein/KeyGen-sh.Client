@@ -3,6 +3,9 @@ name: Release To Nuget
 on:
   workflow_dispatch:
 
+env:
+  NuGetDirectory: $ {{ github.workspace}}/nuget
+
 jobs:
   build:
     runs-on: windows-latest
@@ -10,22 +13,35 @@ jobs:
     steps:
     - name: Checkout      
       uses: actions/checkout@v3
+
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
+
     - name: Install Dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --configuration Release
     - name: Run Tests
       run: dotnet test ./KeyGen-sh.Client.UnitTest/KeyGen-sh.Client.UnitTest.csproj
+
+    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+
+    - name: Create Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+
     - uses: actions/download-artifact@v3
       with:
         name: nuget
         path: ${{ env.NuGetDirectory }}
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
+
     - name: Publish NuGet package
       run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
