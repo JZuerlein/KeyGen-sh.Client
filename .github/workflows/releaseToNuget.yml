@@ -24,6 +24,7 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release
+      
     - name: Run Tests
       run: dotnet test ./KeyGen-sh.Client.UnitTest/KeyGen-sh.Client.UnitTest.csproj
 
