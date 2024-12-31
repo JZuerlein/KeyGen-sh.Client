@@ -28,8 +28,11 @@ jobs:
     - name: Run Tests
       run: dotnet test ./KeyGen-sh.Client.UnitTest/KeyGen-sh.Client.UnitTest.csproj
 
-    - name: Publish to NuGet
-      run: |
-        rm -rf nuget/
-        dotnet pack --no-build KeyGen-sh.Client/KeyGen-sh.client.csproj --configuration Release --output nuget
-        dotnet nuget push nuget/*.nupkg -k '${{ secrets.NUGET_API_KEY }}' --skip-duplicate -s https://api.nuget.org/v3/index.json
+    - name: publish on version change
+      uses: alirezanet/publish-nuget@v3.0.0
+      with:
+        PROJECT_FILE_PATH: ./KeyGen-sh.Client/KeyGen-sh.Client.csproj # Relative to repository root
+        VERSION_FILE_PATH: Directory.Build.props # Filepath with version info, relative to repository root. Defaults to project file
+        VERSION_REGEX: <Version>(.*)<\/Version> # Regex pattern to extract version info in a capturing group
+        TAG_COMMIT: true # Flag to enable / disable git tagging
+        NUGET_KEY: ${{secrets.NUGET_APIKEY}} # nuget.org API key
