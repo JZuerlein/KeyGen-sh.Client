@@ -28,9 +28,5 @@ jobs:
     - name: Run Tests
       run: dotnet test ./KeyGen-sh.Client.UnitTest/KeyGen-sh.Client.UnitTest.csproj
 
-    - name: publish on version change
-      uses: alirezanet/publish-nuget@v3.0.0
-      with:
-        PROJECT_FILE_PATH: ./KeyGen-sh.Client/KeyGen-sh.Client.csproj # Relative to repository root
-        TAG_COMMIT: true # Flag to enable / disable git tagging
-        NUGET_KEY: ${{secrets.NUGET_APIKEY}} # nuget.org API key
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --no-restore --output .
