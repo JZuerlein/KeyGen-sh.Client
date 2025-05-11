@@ -1,11 +1,13 @@
 ﻿using KeyGenClient.Models;
-using NSec.Cryptography;
+using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Crypto.Signers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -45,13 +47,21 @@ namespace KeyGenClient
 
         public bool VerifySignatureWith_ed25519(string encodedSignature, string encryptedData)
         {
-            var ed25519 = SignatureAlgorithm.Ed25519;
-            var signatureBytes = Convert.FromBase64String(encodedSignature);
-            var signingDataBytes = Encoding.UTF8.GetBytes($"license/{encryptedData}");
-            var publicKeyBytes = Convert.FromHexString(_publicKey);
-            var key = NSec.Cryptography.PublicKey.Import(ed25519, publicKeyBytes, KeyBlobFormat.RawPublicKey);
 
-            return ed25519.Verify(key, signingDataBytes, signatureBytes);
+            byte[] signatureBytes = Convert.FromBase64String(encodedSignature);
+            byte[] signingDataBytes = Encoding.UTF8.GetBytes($"license/{encryptedData}");
+            byte[] publicKeyBytes = Convert.FromHexString(_publicKey);
+
+            // Load the public key
+            var publicKey = new Ed25519PublicKeyParameters(publicKeyBytes, 0);
+
+            // Initialize the signer for verification
+            var verifier = new Ed25519Signer();
+            verifier.Init(false, publicKey);
+            verifier.BlockUpdate(signingDataBytes, 0, signingDataBytes.Length);
+
+            // Verify the signature
+            return verifier.VerifySignature(signatureBytes);
         }
 
         public string DecryptWith_ed25519(string encryptedData, byte[] decryptionSecret)
@@ -80,10 +90,15 @@ namespace KeyGenClient
 
         public byte[] GetDecryptionSecret(string licenseKey)
         {
-            var licenseKeyBytes = Encoding.UTF8.GetBytes(licenseKey);
-            var sha256 = new Sha256();
+            byte[] licenseKeyBytes = Encoding.UTF8.GetBytes(licenseKey);
+            byte[] hash;
 
-            return sha256.Hash(licenseKeyBytes);
+            using (var sha256 = SHA256.Create())
+            {
+                hash = sha256.ComputeHash(licenseKeyBytes);
+            }
+
+            return hash;
         }
     }
 }
