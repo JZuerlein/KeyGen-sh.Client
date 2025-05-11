@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+	<Version>1.0.1</Version>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>KeyGenClient</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
