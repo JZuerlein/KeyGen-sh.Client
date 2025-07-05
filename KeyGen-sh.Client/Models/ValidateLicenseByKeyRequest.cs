@@ -18,8 +18,8 @@ namespace KeyGenClient.Models
             public class ValidateLicenseByKeyScope
             {
                 public string fingerprint { get; set; } = string.Empty;
+                public string[]? entitlements { get; set; }
             }
-
         }
     }
 }
